@@ -1,0 +1,255 @@
+Guia Completo de Instalação e Configuração do Manga Admin Panel
+Vou explicar detalhadamente todo o processo, desde a instalação até a configuração completa do plugin, para que você possa usar todas as funcionalidades em seu site.
+
+1. Instalação do Plugin
+Método 1: Instalação via Painel Administrativo
+Acesse o painel administrativo do WordPress (ex: www.seusite.com/wp-admin)
+Navegue até Plugins > Adicionar Novo
+Clique no botão Enviar Plugin no topo da página
+Clique em Escolher arquivo e selecione o arquivo manga-admin-panel.zip que você baixou
+Clique em Instalar Agora
+Após a instalação, clique em Ativar Plugin
+Método 2: Instalação via FTP
+Extraia o arquivo manga-admin-panel.zip em seu computador
+Conecte-se ao seu servidor via FTP
+Navegue até a pasta /wp-content/plugins/ do seu WordPress
+Faça upload da pasta manga-admin-panel extraída para esta localização
+Acesse o painel WordPress > Plugins
+Localize "Manga Admin Panel" e clique em Ativar
+2. Verificação de Dependências
+O plugin foi projetado para trabalhar com os seguintes plugins/temas:
+
+Tema Madara ou compatível
+WP Manga (Plugin base)
+WP Manga Member Upload PRO
+WP Manga Chapter Scheduler
+WP Manga Custom Fields
+Para garantir total compatibilidade, recomendo que você verifique se estes plugins estão instalados e ativos em seu site. Se algum não estiver presente, instale-o primeiro.
+
+3. Configurando as Páginas Principais
+Página do Painel de Administração
+Acesse Páginas > Adicionar Nova
+Dê um título à página (ex: "Painel do Administrador de Mangá")
+Adicione o shortcode [manga_admin_panel] no editor
+Em Atributos de Página no painel lateral, selecione o modelo "Manga Admin Dashboard"
+Publique a página
+Página de Upload de Mangá
+Crie uma nova página com o título "Upload de Mangá"
+Adicione o shortcode [manga_upload] no editor
+Publique a página
+Página de Perfil do Usuário
+Crie uma nova página com o título "Meu Perfil"
+Adicione o shortcode [manga_user_profile] no editor
+Publique a página
+Página de Leitor Moderno
+Crie uma nova página com o título "Ler Mangá"
+Adicione o shortcode [manga_reader] no editor
+Publique a página
+Página de Exibição de Mangás
+Crie uma nova página com o título "Biblioteca de Mangás"
+Adicione o shortcode [manga_display] no editor
+Publique a página
+4. Personalização das Cores
+O plugin oferece duas maneiras de personalizar as cores:
+
+Método 1: Via Painel Administrativo
+Acesse Configurações > Manga Admin no painel WordPress
+Você verá um painel de personalização de cores
+Ajuste cada cor conforme desejado:
+Cor Primária: usada para botões principais e elementos de destaque
+Cor Secundária: para elementos secundários
+Cor de Destaque: para links e elementos interativos
+Cor de Sucesso: para mensagens de sucesso e status positivos
+Cor de Perigo: para mensagens de erro e ações destrutivas
+Cor de Fundo: para o fundo do painel
+Cor dos Cards: para o fundo dos cards
+Cor do Texto: para texto principal
+Cor de Texto Claro: para textos secundários
+A pré-visualização mostrará como as cores serão aplicadas
+Clique em Salvar Configurações
+Método 2: Via Shortcode
+Você também pode adicionar o painel de configuração de cores em qualquer página do site usando o shortcode:
+
+[manga_admin_settings]
+Observação: Apenas administradores terão acesso a este painel quando inserido via shortcode.
+
+5. Configurando os Shortcodes
+Shortcode [manga_display]
+Este shortcode oferece várias opções para exibir mangás em diferentes formatos:
+
+[manga_display limit="12" orderby="date" order="DESC" layout="grid" columns="4" genre="" status="" author="" show_rating="yes" show_views="yes" show_chapters="yes" card_style="default"]
+Parâmetros disponíveis:
+
+limit: Número de mangás a exibir (padrão: 12)
+orderby: Ordenação (opções: date, title, views, popularity, random)
+order: Direção da ordenação (ASC ou DESC)
+layout: Formato de exibição (grid, list, carousel)
+columns: Número de colunas para o layout grid (1-6)
+genre: Filtrar por gênero (slug do gênero)
+status: Filtrar por status (slug do status)
+author: Filtrar por autor (slug do autor)
+show_rating: Exibir avaliação (yes/no)
+show_views: Exibir contagem de visualizações (yes/no)
+show_chapters: Exibir contagem de capítulos (yes/no)
+card_style: Estilo dos cards (default, compact, expanded)
+Exemplos:
+
+[manga_display limit="8" orderby="views" layout="carousel" columns="4"]
+[manga_display genre="action,adventure" status="ongoing" card_style="expanded"]
+Shortcode [manga_reader]
+Este shortcode exibe o leitor moderno de mangá:
+
+[manga_reader manga_id="123" default_mode="pagination" show_chapter_list="yes" show_comments="no"]
+Parâmetros disponíveis:
+
+manga_id: ID do mangá (opcional, pode ser passado pela URL)
+chapter_id: ID do capítulo (opcional, pode ser passado pela URL)
+default_mode: Modo de leitura padrão (pagination ou webtoon)
+    show_chapter_list: Exibir lista de capítulos (yes/no)
+    show_comments: Exibir seção de comentários (yes/no)
+    show_header: Exibir cabeçalho do leitor (yes/no)
+    Shortcode [manga_user_profile]
+    Este shortcode exibe o perfil do usuário com sua biblioteca de mangás:
+
+    [manga_user_profile user_id="0" show_stats="yes" show_lists="yes" show_avatar="yes"]
+    Parâmetros disponíveis:
+
+    user_id: ID do usuário (0 = usuário atual)
+    show_stats: Exibir estatísticas de leitura (yes/no)
+    show_lists: Exibir listas de mangás (yes/no)
+    show_avatar: Exibir avatar do usuário (yes/no)
+    Shortcode [manga_user]
+    Este shortcode permite exibir conteúdo baseado no estado de login do usuário:
+
+    [manga_user state="logged_in"]
+    Conteúdo para usuários logados
+    [/manga_user]
+    [manga_user state="logged_out"]
+    Conteúdo para usuários não logados
+    [/manga_user]
+    [manga_user state="can_manage"]
+    Conteúdo para usuários com permissão para gerenciar mangás
+    [/manga_user]
+    6. Sistema de Status para Usuários
+    O plugin inclui um sistema de status de leitura para os usuários, que permite:
+
+    Acompanhar progresso: Os usuários podem marcar os mangás como:
+
+    Lendo
+    Concluído
+    Em espera
+    Abandonado
+    Planejo ler
+    Gerenciar sua biblioteca: Na página de perfil, os usuários podem:
+
+    Filtrar mangás por status
+    Buscar mangás específicos
+    Ordenar por título, progresso, avaliação ou data de leitura
+    Atualizar progresso de leitura
+    Avaliar mangás (de 1 a 5 estrelas)
+    Ver estatísticas: O sistema mostra estatísticas como:
+
+    Total de mangás na biblioteca
+    Número de mangás concluídos
+    Total de capítulos lidos
+    Nota média atribuída
+    7. Leitor Moderno
+    O leitor moderno oferece uma experiência de leitura aprimorada:
+
+    Modos de visualização:
+
+    Paginado: navegação página a página, similar a um livro físico
+    Lista corrida (Webtoon): rolagem vertical contínua
+    Configurações de leitura:
+
+    Ajuste de brilho: controle deslizante para ajustar o brilho das imagens
+    As preferências do usuário são salvas automaticamente (cookies)
+    Navegação:
+
+    Botões para próxima/anterior página (modo paginado)
+    Navegação por teclado com setas (modo paginado)
+    Botão de "voltar ao topo" (modo webtoon)
+    Dropdown para troca rápida de capítulos
+    8. Sistema de Capítulos Agendados
+    O plugin inclui suporte para o agendamento de capítulos:
+
+    Lista de capítulos com indicadores:
+
+    Ícone de cadeado para capítulos agendados
+    Ícone de coroa para capítulos premium
+    Data de disponibilidade para capítulos agendados
+    Interface de agendamento:
+
+    Calendário para seleção de data/hora
+    Status visual (hoje, agendado, publicado)
+    Contagem regressiva até a publicação
+    Gerenciamento de agendamentos:
+
+    Opções para editar agendamento
+    Publicar imediatamente
+    Cancelar agendamento
+    9. Integrando com o Elementor
+    Se você usa o Elementor Page Builder, o plugin inclui widgets prontos para uso:
+
+    Acesse o Elementor Editor em qualquer página
+    Procure por widgets na categoria "Manga Admin"
+    Arraste e solte os widgets disponíveis:
+    Manga Admin Panel
+    Manga Display
+    Manga Reader
+    Manga User Profile
+    Os widgets possuem os mesmos parâmetros dos shortcodes correspondentes, mas podem ser configurados visualmente.
+
+    10. Verificação e Solução de Problemas
+    Verificando a Instalação
+    Acesse a página de Plugins do seu WordPress
+    Verifique se "Manga Admin Panel" está ativo
+    Verifique se não há avisos de dependências faltando
+    Problemas Comuns e Soluções
+    Erro 404 ao tentar criar mangá:
+
+    Verifique se as permissões da pasta de upload no WordPress estão corretas
+    Tente atualizar as permalinks em Configurações > Links Permanentes
+    Cores personalizadas não aplicadas:
+
+    Limpe o cache do navegador
+    Verifique se não há conflitos com outros plugins de otimização
+    Elementos de formulário com texto não visível:
+
+    O plugin já corrige isso automaticamente, mas em caso de conflito com temas, adicione color: #333; ao CSS personalizado do tema
+    Incompatibilidade com plugins necessários:
+
+    O plugin foi projetado para funcionar mesmo sem todos os plugins recomendados
+    Verifique as versões dos plugins recomendados para garantir compatibilidade
+    11. Gerenciando Permissões de Usuários
+    O plugin cria um novo papel de usuário chamado "Manga Editor" que pode:
+
+    Enviar e gerenciar mangás
+    Criar e editar capítulos
+    Acessar todas as funcionalidades do painel
+    Para atribuir permissões a usuários existentes:
+
+    Acesse Usuários no painel WordPress
+    Edite o usuário desejado
+    Altere o papel para "Manga Editor" ou
+    Mantenha o papel atual e marque a opção "Pode gerenciar mangá" (meta personalizado)
+    12. Personalização Avançada
+    Para desenvolvedores que desejam personalizar ainda mais o plugin:
+
+    CSS Personalizado
+    Você pode adicionar CSS personalizado em:
+
+    Personalizador do tema (Aparência > Personalizar > CSS Adicional)
+    Arquivo wp-content/plugins/manga-admin-panel/assets/css/manga-admin-styles.css
+    Filtros e Ações
+    O plugin oferece diversos hooks para personalização:
+
+    manga_admin_panel_template_path: Modificar o caminho dos templates
+    manga_admin_panel_get_color_options: Modificar as opções de cores padrão
+    manga_admin_panel_has_access: Personalizar lógica de permissão de acesso
+    Considerações Finais
+    O Manga Admin Panel foi projetado para ser intuitivo e facilmente personalizável. Se encontrar qualquer problema ou tiver dúvidas sobre a configuração, consulte a documentação completa incluída no arquivo readme.txt dentro do plugin.
+
+    Lembre-se de que este plugin funciona melhor quando todos os plugins recomendados estão instalados, mas foi projetado para degradar graciosamente quando alguns componentes estão ausentes.
+
+    Espero que este guia detalhado ajude você a configurar completamente o Manga Admin Panel em seu site. Agora você tem uma interface moderna e personalizada para gerenciar todo o conteúdo de mangá diretamente do frontend do seu site!
